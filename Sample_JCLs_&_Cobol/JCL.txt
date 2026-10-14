@@ -1,0 +1,37 @@
+//DSRC013I JOB 'VAIBHAV',NOTIFY=&SYSUID,RESTART=STEP5                   00010000
+//STEP1    EXEC PGM=IEBGENER                                            00020000
+//*ONE FILE TO  ANOTHER FILE                                            00021000
+//SYSPRINT DD SYSOUT=*                                                  00030000
+//SYSUT1   DD DSN=DSRC013.EMPLOYE.FILE3,DISP=SHR                        00040000
+//SYSUT2   DD DSN=DSRC013.EMPLOYE.FILE.NEW,                             00050000
+//          SPACE=(TRK,(1,2)),                                          00060000
+//            DCB=DSRC013.EMPLOYE.FILE3                                 00070000
+//SYSIN    DD DUMMY                                                     00080000
+//* IN SPOOL                                                            00081000
+//STEP2    EXEC PGM=IEBGENER                                            00090000
+//SYSPRINT DD SYSOUT=*                                                  00100000
+//SYSUT1   DD DSN=DSRC013.EMPLOYE.FILE3,DISP=SHR                        00110000
+//SYSUT2   DD SYSOUT=*                                                  00120000
+//SYSIN    DD DUMMY                                                     00150000
+//* IN SPOOL                                                            00160000
+//STEP3    EXEC PGM=IEBGENER                                            00170000
+//SYSPRINT DD SYSOUT=*                                                  00180000
+//SYSUT1   DD *                                                         00190000
+THIS IS INSTREAM DATA                                                   00191000
+/*                                                                      00192000
+//SYSUT2   DD SYSOUT=*                                                  00200000
+//SYSIN    DD DUMMY                                                     00210000
+//* IN SPOOL                                                            00220000
+//STEP4    EXEC PGM=IEBGENER                                            00230000
+//SYSPRINT DD SYSOUT=*                                                  00240000
+//SYSUT1   DD DSN=DSRC013.HEXA23.JCLLIB(JC01),DISP=SHR                  00250000
+//SYSUT2   DD SYSOUT=*                                                  00260000
+//SYSIN    DD DUMMY                                                     00270000
+//* INSTREAM TO MEMBER                                                  00271000
+//STEP5    EXEC PGM=IEBGENER                                            00280000
+//SYSPRINT DD SYSOUT=*                                                  00290000
+//SYSUT1   DD *                                                         00300000
+THIS IS AWESOME                                                         00301000
+/*                                                                      00302000
+//SYSUT2   DD DSN=DSRC013.HEXA23.JCLLIB(DUMP),DISP=SHR                  00310000
+//SYSIN    DD DUMMY                                                     00340000
